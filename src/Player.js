@@ -7,7 +7,9 @@ import "./styles.css";
 
 const Player = (props) => {
   const { src, length } = props;
-  let radius = 40;
+  let radius = 25,
+    stroke = 10,
+    strokec = "rgba(0,0,0,0.54)";
 
   const { togglePlayPause, ready, loading, playing } = useAudioPlayer({
     src:
@@ -24,12 +26,12 @@ const Player = (props) => {
   let dashOffset = circ * (1 - percentComplete / 100);
   return (
     <div className="player">
-      <svg height="100" width="100">
+      <svg height={2 * radius + 2 * stroke} width={2 * radius + 2 * stroke}>
         <circle
-          cx="50"
-          cy="50"
+          cx={radius + stroke}
+          cy={radius + stroke}
           r={radius}
-          stroke="black"
+          stroke={strokec}
           strokeDasharray={2 * Math.PI * radius}
           strokeDashoffset={dashOffset}
           strokeWidth="10"
